@@ -51,7 +51,20 @@ public class Image {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Tag> tags = new ArrayList<>();
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    //Feature: added comments option for a image
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "image")
+    private List<Comment> comments = new ArrayList<>();
+
     public Image() {
+
     }
 
     public Image(int id, String title, String imageFile, Date date) {
